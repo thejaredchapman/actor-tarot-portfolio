@@ -296,6 +296,58 @@ export const testimonials = [
   },
 ]
 
+export interface UpcomingShow {
+  id: string
+  cardNumber: string
+  cardName: string
+  role: string
+  production: string
+  venue: string
+  dates: string
+  director: string
+  description: string
+  ticketStatus: 'available' | 'limited' | 'sold-out'
+}
+
+export const upcomingShows: UpcomingShow[] = [
+  {
+    id: 'show-1',
+    cardNumber: 'XIV',
+    cardName: 'Temperance',
+    role: 'Medea',
+    production: 'Medea',
+    venue: 'National Theatre, London',
+    dates: 'April 12 — May 24, 2026',
+    director: 'Katie Mitchell',
+    description: 'A searing new production that reimagines Euripides\' tragedy through the lens of modern displacement and maternal fury.',
+    ticketStatus: 'available',
+  },
+  {
+    id: 'show-2',
+    cardNumber: 'XI',
+    cardName: 'Justice',
+    role: 'Portia',
+    production: 'The Merchant of Venice',
+    venue: 'Shakespeare\'s Globe, London',
+    dates: 'June 8 — July 19, 2026',
+    director: 'Sam Mendes',
+    description: 'A bold exploration of mercy, justice, and the masks we wear — performed in the round under open sky.',
+    ticketStatus: 'limited',
+  },
+  {
+    id: 'show-3',
+    cardNumber: 'XII',
+    cardName: 'The Hanged Man',
+    role: 'Martha',
+    production: 'Who\'s Afraid of Virginia Woolf?',
+    venue: 'Harold Pinter Theatre, West End',
+    dates: 'September 3 — November 15, 2026',
+    director: 'Marianne Elliott',
+    description: 'Albee\'s scorching masterpiece of marital warfare. A battle of wits, wounds, and devastating truth.',
+    ticketStatus: 'available',
+  },
+]
+
 export const tarotCardBacks = [
   'The Fool', 'The Magician', 'The High Priestess', 'The Empress',
   'The Emperor', 'The Hierophant', 'The Lovers', 'The Chariot',

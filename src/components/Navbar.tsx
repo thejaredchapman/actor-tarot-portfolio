@@ -9,6 +9,7 @@ const navLinks = [
   { label: 'The Mirror', href: '#gallery', numeral: 'XVIII' },
   { label: 'The Record', href: '#resume', numeral: 'X' },
   { label: 'The Circle', href: '#testimonials', numeral: 'V' },
+  { label: 'The Stage', href: '#upcoming-shows', numeral: 'VIII' },
   { label: 'The Oracle', href: '#contact', numeral: 'II' },
 ]
 

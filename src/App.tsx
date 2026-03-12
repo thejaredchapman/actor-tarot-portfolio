@@ -8,6 +8,7 @@ import Portfolio from './pages/Portfolio'
 import Gallery from './pages/Gallery'
 import Resume from './pages/Resume'
 import Testimonials from './pages/Testimonials'
+import UpcomingShows from './pages/UpcomingShows'
 import Contact from './pages/Contact'
 import Footer from './components/Footer'
 import LoadingScreen from './components/LoadingScreen'
@@ -37,6 +38,7 @@ function App() {
             <Gallery />
             <Resume />
             <Testimonials />
+            <UpcomingShows />
             <Contact />
           </main>
           <Footer />
