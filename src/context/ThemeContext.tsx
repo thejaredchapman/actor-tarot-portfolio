@@ -47,7 +47,7 @@ function darken(hex: string, amount: number): string {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [tarotMode, setTarotMode] = useState(true)
+  const [tarotMode, setTarotMode] = useState(false)
   const [darkMode, setDarkMode] = useState(true)
   const [accentColor, setAccentColor] = useState<string | null>(null)
   const [bgColor, setBgColor] = useState<string | null>(null)

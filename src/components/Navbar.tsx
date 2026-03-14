@@ -87,7 +87,7 @@ export default function Navbar() {
                 opacity="0.7"
               />
             </svg>
-            <span>CASSANDRA VEIL</span>
+            <span>PHYLICIA MCLEOD</span>
           </a>
 
           {/* Desktop Nav */}

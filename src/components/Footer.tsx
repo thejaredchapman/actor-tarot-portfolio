@@ -43,7 +43,7 @@ export default function Footer() {
           color: goldColor,
           textAlign: 'center',
         }}>
-          CASSANDRA VEIL
+          PHYLICIA MCLEOD
         </p>
 
         <div style={{
@@ -88,7 +88,7 @@ export default function Footer() {
           fontSize: '0.7rem',
           color: creamVFaded,
         }}>
-          &copy; {new Date().getFullYear()} Cassandra Veil. All rights reserved.
+          &copy; {new Date().getFullYear()} Phylicia Mcleod. All rights reserved.
         </p>
       </div>
     </footer>

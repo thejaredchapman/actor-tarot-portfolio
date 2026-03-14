@@ -26,13 +26,13 @@ export interface TarotCredit {
 }
 
 export const actorInfo = {
-  name: 'Cassandra Veil',
+  name: 'Phylicia Mcleod',
   tagline: 'Every role is a reading. Every stage, a sacred spread.',
-  bio: `Cassandra Veil is a classically trained actor whose magnetic presence transcends the boundaries between stage and screen. With over a decade of experience spanning Shakespeare to contemporary experimental theatre, independent film, and prestige television, she brings an otherworldly depth to every character she inhabits.
+  bio: `Phylicia Mcleod is a classically trained actor whose magnetic presence transcends the boundaries between stage and screen. With over a decade of experience spanning Shakespeare to contemporary experimental theatre, independent film, and prestige television, she brings an otherworldly depth to every character she inhabits.
 
-Known for her transformative performances and her ability to find the profound humanity within even the most enigmatic roles, Cassandra has been called "a force of nature wrapped in mystery" by The Stage. Her work draws from a deep well of emotional intelligence, physical discipline, and an intuitive understanding of the human condition that audiences describe as almost... prophetic.
+Known for her transformative performances and her ability to find the profound humanity within even the most enigmatic roles, Phyliciahas been called "a force of nature wrapped in mystery" by The Stage. Her work draws from a deep well of emotional intelligence, physical discipline, and an intuitive understanding of the human condition that audiences describe as almost... prophetic.
 
-When not performing, Cassandra studies comparative mythology, practices contemplative arts, and advocates for diversity in storytelling. She holds an MFA from the Yale School of Drama and is a proud member of SAG-AFTRA and Actors' Equity.`,
+When not performing, Phyliciastudies comparative mythology, practices contemplative arts, and advocates for diversity in storytelling. She holds an MFA from the Yale School of Drama and is a proud member of SAG-AFTRA and Actors' Equity.`,
   representation: {
     agent: 'Arcana Artists Agency',
     agentName: 'Morgan Blackwood',
@@ -77,7 +77,7 @@ export const featuredRoles: TarotRole[] = [
     description:
       'A Lady Macbeth stripped of Victorian restraint — raw, feral, and incandescent. This interpretation explored ambition as a form of grief, transforming the famous sleepwalking scene into a devastating reckoning with loss.',
     quote:
-      '"Veil\'s Lady Macbeth doesn\'t just unravel — she combusts, leaving the audience breathless in the ashes." — The Guardian',
+      '"Mcleod\'s Lady Macbeth doesn\'t just unravel — she combusts, leaving the audience breathless in the ashes." — The Guardian',
     symbolMeaning:
       'The Star represents hope, inspiration, and the inner light that guides us through darkness — much like this career-defining performance.',
   },
@@ -92,7 +92,7 @@ export const featuredRoles: TarotRole[] = [
     director: 'Ivo van Hove',
     year: '2023',
     description:
-      "A radical reimagining of Ibsen's classic, set in a sterile modern apartment. Cassandra's Nora began as perfectly porcelain and ended as molten steel, her famous door-slam replaced by an eerie, silent departure that haunted audiences for weeks.",
+      "A radical reimagining of Ibsen's classic, set in a sterile modern apartment. Phylicia's Nora began as perfectly porcelain and ended as molten steel, her famous door-slam replaced by an eerie, silent departure that haunted audiences for weeks.",
     quote:
       '"The definitive Nora of our generation." — The New York Times',
     symbolMeaning:
@@ -109,7 +109,7 @@ export const featuredRoles: TarotRole[] = [
     director: 'Chloé Zhao',
     year: '2024',
     description:
-      'In this psychological thriller, Cassandra plays a neuroscientist who discovers that her patients\' dreams are bleeding into reality. A masterclass in quiet terror, her performance anchors the film\'s exploration of consciousness and perception.',
+      'In this psychological thriller, Phyliciaplays a neuroscientist who discovers that her patients\' dreams are bleeding into reality. A masterclass in quiet terror, her performance anchors the film\'s exploration of consciousness and perception.',
     quote:
       '"A performance of exquisite restraint and devastating power." — Variety',
     symbolMeaning:
@@ -126,9 +126,9 @@ export const featuredRoles: TarotRole[] = [
     director: 'Mike Flanagan',
     year: '2023',
     description:
-      'A gothic limited series following a medium who uncovers her family\'s dark legacy. Cassandra\'s portrayal balanced genuine warmth with creeping dread, earning her a Critics\' Choice nomination.',
+      'A gothic limited series following a medium who uncovers her family\'s dark legacy. Phylicia\'s portrayal balanced genuine warmth with creeping dread, earning her a Critics\' Choice nomination.',
     quote:
-      '"Veil turns the screen into a séance — you can\'t look away." — IndieWire',
+      '"Mcleod turns the screen into a séance — you can\'t look away." — IndieWire',
     symbolMeaning:
       'The Moon represents intuition, the subconscious, and the courage to navigate uncertainty.',
   },
@@ -143,9 +143,9 @@ export const featuredRoles: TarotRole[] = [
     director: 'Phyllida Lloyd',
     year: '2022',
     description:
-      'A gender-flipped Prospero brought to life with thunderous authority and tender vulnerability. Cassandra commanded the stage like a conductor commands an orchestra — every gesture, every silence, perfectly orchestrated.',
+      'A gender-flipped Prospero brought to life with thunderous authority and tender vulnerability. Phyliciacommanded the stage like a conductor commands an orchestra — every gesture, every silence, perfectly orchestrated.',
     quote:
-      '"Shakespeare would have written it this way if he\'d known Cassandra Veil." — Time Out London',
+      '"Shakespeare would have written it this way if he\'d known Phylicia Mcleod." — Time Out London',
     symbolMeaning:
       'The Magician channels the elements, manifesting vision into reality through sheer will and mastery.',
   },
@@ -160,7 +160,7 @@ export const featuredRoles: TarotRole[] = [
     director: 'Andrea Arnold',
     year: '2022',
     description:
-      'A wild, visceral Catherine who is as much a force of the moors as Heathcliff himself. Cassandra brought a feral physicality and aching tenderness that redefined the literary heroine for modern audiences.',
+      'A wild, visceral Catherine who is as much a force of the moors as Heathcliff himself. Phyliciabrought a feral physicality and aching tenderness that redefined the literary heroine for modern audiences.',
     quote:
       '"The definitive screen Catherine — untamed, heartbreaking, unforgettable." — Sight & Sound',
     symbolMeaning:
@@ -277,13 +277,13 @@ export const galleryImages = [
 
 export const testimonials = [
   {
-    quote: "Working with Cassandra is like watching alchemy happen in real time. She takes words on a page and transmutes them into something alive, breathing, and wholly her own.",
+    quote: "Working with Phyliciais like watching alchemy happen in real time. She takes words on a page and transmutes them into something alive, breathing, and wholly her own.",
     author: 'Adrian Noble',
     role: 'Director, Macbeth',
     card: 'The Hierophant',
   },
   {
-    quote: "I've directed hundreds of actors. Cassandra is one of perhaps five who made me forget I was watching a performance. She doesn't act — she becomes.",
+    quote: "I've directed hundreds of actors. Phyliciais one of perhaps five who made me forget I was watching a performance. She doesn't act — she becomes.",
     author: 'Ivo van Hove',
     role: "Director, A Doll's House",
     card: 'The Emperor',
