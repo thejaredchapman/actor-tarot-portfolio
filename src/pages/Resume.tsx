@@ -2,8 +2,28 @@ import { motion } from 'framer-motion'
 import { Download } from 'lucide-react'
 import { resumeCredits, awards } from '../data/tarotData'
 import SectionDivider from '../components/SectionDivider'
+import { useTheme } from '../context/ThemeContext'
 
 export default function Resume() {
+  const { tarotMode, darkMode } = useTheme()
+
+  const goldColor = darkMode ? '#c9a84c' : '#8b6914'
+  const goldLight = darkMode ? '#e8d48b' : '#6b5010'
+  const lavenderColor = darkMode ? '#9b7bc7' : '#7b5baa'
+  const creamColor = darkMode ? '#f5e6d3' : '#2a1a3e'
+  const creamFaded = darkMode ? 'rgba(245, 230, 211, 0.5)' : 'rgba(42, 26, 62, 0.5)'
+  const lavenderFaded = darkMode ? 'rgba(155, 123, 199, 0.5)' : 'rgba(123, 91, 170, 0.5)'
+  const goldBorderLight = darkMode ? 'rgba(201, 168, 76, 0.3)' : 'rgba(139, 105, 20, 0.3)'
+  const goldBorderFaint = darkMode ? 'rgba(201, 168, 76, 0.1)' : 'rgba(139, 105, 20, 0.1)'
+  const goldBorderMed = darkMode ? 'rgba(201, 168, 76, 0.15)' : 'rgba(139, 105, 20, 0.15)'
+  const goldBorderStrong = darkMode ? 'rgba(201, 168, 76, 0.35)' : 'rgba(139, 105, 20, 0.35)'
+  const rowHoverBg = darkMode ? 'rgba(201, 168, 76, 0.05)' : 'rgba(139, 105, 20, 0.05)'
+  const tableBg = darkMode ? 'rgba(26, 16, 40, 0.3)' : 'rgba(255, 255, 255, 0.5)'
+  const awardBg = darkMode ? 'rgba(201, 168, 76, 0.03)' : 'rgba(139, 105, 20, 0.03)'
+  const awardBgHover = darkMode ? 'rgba(201, 168, 76, 0.08)' : 'rgba(139, 105, 20, 0.08)'
+  const buttonBg = darkMode ? 'rgba(201, 168, 76, 0.1)' : 'rgba(139, 105, 20, 0.1)'
+  const buttonBgHover = darkMode ? 'rgba(201, 168, 76, 0.2)' : 'rgba(139, 105, 20, 0.2)'
+
   return (
     <section
       id="resume"
@@ -14,7 +34,6 @@ export default function Resume() {
       }}
     >
       <div style={{ maxWidth: 1000, margin: '0 auto' }}>
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -22,34 +41,35 @@ export default function Resume() {
           transition={{ duration: 0.8 }}
           style={{ textAlign: 'center', marginBottom: 60 }}
         >
-          <span style={{
-            fontFamily: "'Cinzel', serif",
-            fontSize: '0.75rem',
-            letterSpacing: '0.2em',
-            color: '#c9a84c',
-          }}>
-            X
-          </span>
+          {tarotMode && (
+            <span style={{
+              fontFamily: "'Cinzel', serif",
+              fontSize: '0.75rem',
+              letterSpacing: '0.2em',
+              color: goldColor,
+            }}>
+              X
+            </span>
+          )}
           <h2 style={{
             fontFamily: "'Cinzel', serif",
             fontSize: 'clamp(1.8rem, 4vw, 3rem)',
-            color: '#e8d48b',
+            color: goldLight,
             letterSpacing: '0.08em',
             margin: '8px 0',
           }}>
-            The Wheel of Fortune
+            {tarotMode ? 'The Wheel of Fortune' : 'Resume'}
           </h2>
           <p style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: '1.15rem',
             fontStyle: 'italic',
-            color: '#9b7bc7',
+            color: lavenderColor,
           }}>
-            The complete record of roles written in the stars
+            {tarotMode ? 'The complete record of roles written in the stars' : 'Complete performance history'}
           </p>
-          <SectionDivider symbol="\u2638" />
+          <SectionDivider symbol={tarotMode ? "\u2638" : undefined} />
 
-          {/* Download button */}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -59,10 +79,10 @@ export default function Resume() {
               alignItems: 'center',
               gap: 10,
               padding: '12px 28px',
-              border: '1px solid #c9a84c',
+              border: `1px solid ${goldColor}`,
               borderRadius: 30,
-              background: 'rgba(201, 168, 76, 0.1)',
-              color: '#c9a84c',
+              background: buttonBg,
+              color: goldColor,
               fontFamily: "'Cinzel', serif",
               fontSize: '0.75rem',
               letterSpacing: '0.1em',
@@ -70,10 +90,10 @@ export default function Resume() {
               transition: 'all 0.3s ease',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(201, 168, 76, 0.2)'
+              e.currentTarget.style.background = buttonBgHover
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(201, 168, 76, 0.1)'
+              e.currentTarget.style.background = buttonBg
             }}
           >
             <Download size={16} />
@@ -81,7 +101,6 @@ export default function Resume() {
           </motion.button>
         </motion.div>
 
-        {/* Credits Sections */}
         {resumeCredits.map((section, sectionIndex) => (
           <motion.div
             key={section.category}
@@ -91,7 +110,6 @@ export default function Resume() {
             transition={{ duration: 0.6, delay: sectionIndex * 0.15 }}
             style={{ marginBottom: 48 }}
           >
-            {/* Category Header */}
             <div style={{
               display: 'flex',
               alignItems: 'center',
@@ -102,29 +120,30 @@ export default function Resume() {
                 fontFamily: "'Cinzel', serif",
                 fontSize: '1rem',
                 letterSpacing: '0.15em',
-                color: '#c9a84c',
+                color: goldColor,
               }}>
                 {section.category.toUpperCase()}
               </h3>
               <div style={{
                 flex: 1,
                 height: 1,
-                background: 'linear-gradient(90deg, rgba(201, 168, 76, 0.3), transparent)',
+                background: `linear-gradient(90deg, ${goldBorderLight}, transparent)`,
               }} />
-              <span style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: '0.8rem',
-                fontStyle: 'italic',
-                color: 'rgba(155, 123, 199, 0.5)',
-              }}>
-                {section.cardName}
-              </span>
+              {tarotMode && (
+                <span style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: '0.8rem',
+                  fontStyle: 'italic',
+                  color: lavenderFaded,
+                }}>
+                  {section.cardName}
+                </span>
+              )}
             </div>
 
-            {/* Credits Table */}
             <div style={{
-              background: 'rgba(26, 16, 40, 0.3)',
-              border: '1px solid rgba(201, 168, 76, 0.1)',
+              background: tableBg,
+              border: `1px solid ${goldBorderFaint}`,
               borderRadius: 12,
               overflow: 'hidden',
             }}>
@@ -137,12 +156,12 @@ export default function Resume() {
                     gap: 16,
                     padding: '14px 24px',
                     borderBottom: i < section.credits.length - 1
-                      ? '1px solid rgba(201, 168, 76, 0.06)'
+                      ? `1px solid ${darkMode ? 'rgba(201, 168, 76, 0.06)' : 'rgba(139, 105, 20, 0.06)'}`
                       : 'none',
                     transition: 'background 0.3s ease',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(201, 168, 76, 0.05)'
+                    e.currentTarget.style.background = rowHoverBg
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.background = 'transparent'
@@ -152,7 +171,7 @@ export default function Resume() {
                     fontFamily: "'Cormorant Garamond', serif",
                     fontSize: '1rem',
                     fontWeight: 600,
-                    color: '#f5e6d3',
+                    color: creamColor,
                   }}>
                     {credit.role}
                   </span>
@@ -160,11 +179,11 @@ export default function Resume() {
                     fontFamily: "'Cormorant Garamond', serif",
                     fontSize: '0.95rem',
                     fontStyle: 'italic',
-                    color: '#9b7bc7',
+                    color: lavenderColor,
                   }}>
                     {credit.production}
                     {credit.venue && (
-                      <span style={{ color: 'rgba(155, 123, 199, 0.5)', display: 'block', fontSize: '0.8rem' }}>
+                      <span style={{ color: lavenderFaded, display: 'block', fontSize: '0.8rem' }}>
                         {credit.venue}
                       </span>
                     )}
@@ -172,11 +191,11 @@ export default function Resume() {
                   <span style={{
                     fontFamily: "'Cormorant Garamond', serif",
                     fontSize: '0.9rem',
-                    color: 'rgba(245, 230, 211, 0.5)',
+                    color: creamFaded,
                     textAlign: 'right',
                   }}>
                     {credit.director && `Dir. ${credit.director}`}
-                    <span style={{ display: 'block', fontSize: '0.8rem', color: '#c9a84c' }}>
+                    <span style={{ display: 'block', fontSize: '0.8rem', color: goldColor }}>
                       {credit.year}
                     </span>
                   </span>
@@ -186,7 +205,6 @@ export default function Resume() {
           </motion.div>
         ))}
 
-        {/* Awards Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -203,23 +221,25 @@ export default function Resume() {
               fontFamily: "'Cinzel', serif",
               fontSize: '1rem',
               letterSpacing: '0.15em',
-              color: '#c9a84c',
+              color: goldColor,
             }}>
               AWARDS & HONOURS
             </h3>
             <div style={{
               flex: 1,
               height: 1,
-              background: 'linear-gradient(90deg, rgba(201, 168, 76, 0.3), transparent)',
+              background: `linear-gradient(90deg, ${goldBorderLight}, transparent)`,
             }} />
-            <span style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: '0.8rem',
-              fontStyle: 'italic',
-              color: 'rgba(155, 123, 199, 0.5)',
-            }}>
-              The Sun
-            </span>
+            {tarotMode && (
+              <span style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: '0.8rem',
+                fontStyle: 'italic',
+                color: lavenderFaded,
+              }}>
+                The Sun
+              </span>
+            )}
           </div>
 
           <div style={{
@@ -236,18 +256,18 @@ export default function Resume() {
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 style={{
                   padding: '16px 20px',
-                  border: '1px solid rgba(201, 168, 76, 0.15)',
+                  border: `1px solid ${goldBorderMed}`,
                   borderRadius: 10,
-                  background: 'rgba(201, 168, 76, 0.03)',
+                  background: awardBg,
                   transition: 'all 0.3s ease',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(201, 168, 76, 0.35)'
-                  e.currentTarget.style.background = 'rgba(201, 168, 76, 0.08)'
+                  e.currentTarget.style.borderColor = goldBorderStrong
+                  e.currentTarget.style.background = awardBgHover
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(201, 168, 76, 0.15)'
-                  e.currentTarget.style.background = 'rgba(201, 168, 76, 0.03)'
+                  e.currentTarget.style.borderColor = goldBorderMed
+                  e.currentTarget.style.background = awardBg
                 }}
               >
                 <div style={{
@@ -256,19 +276,22 @@ export default function Resume() {
                   alignItems: 'flex-start',
                   marginBottom: 6,
                 }}>
-                  <span style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: '0.65rem',
-                    color: 'rgba(155, 123, 199, 0.5)',
-                    fontStyle: 'italic',
-                  }}>
-                    {award.card}
-                  </span>
+                  {tarotMode && (
+                    <span style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontSize: '0.65rem',
+                      color: lavenderFaded,
+                      fontStyle: 'italic',
+                    }}>
+                      {award.card}
+                    </span>
+                  )}
                   <span style={{
                     fontFamily: "'Cinzel', serif",
                     fontSize: '0.65rem',
-                    color: '#c9a84c',
+                    color: goldColor,
                     letterSpacing: '0.1em',
+                    marginLeft: tarotMode ? 0 : 'auto',
                   }}>
                     {award.year}
                   </span>
@@ -277,7 +300,7 @@ export default function Resume() {
                   fontFamily: "'Cormorant Garamond', serif",
                   fontSize: '0.95rem',
                   fontWeight: 600,
-                  color: '#e8d48b',
+                  color: goldLight,
                   lineHeight: 1.4,
                 }}>
                   {award.name}
@@ -286,7 +309,7 @@ export default function Resume() {
                   fontFamily: "'Cormorant Garamond', serif",
                   fontSize: '0.8rem',
                   fontStyle: 'italic',
-                  color: 'rgba(245, 230, 211, 0.5)',
+                  color: creamFaded,
                   marginTop: 4,
                 }}>
                   {award.production}

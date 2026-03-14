@@ -1,10 +1,21 @@
+import { useTheme } from '../context/ThemeContext'
+
 export default function Footer() {
+  const { tarotMode, darkMode } = useTheme()
+
+  const goldColor = darkMode ? '#c9a84c' : '#8b6914'
+  const lavenderColor = darkMode ? '#9b7bc7' : '#7b5baa'
+  const lavenderFaded = darkMode ? 'rgba(155, 123, 199, 0.5)' : 'rgba(123, 91, 170, 0.5)'
+  const creamVFaded = darkMode ? 'rgba(245, 230, 211, 0.3)' : 'rgba(42, 26, 62, 0.3)'
+  const borderColor = darkMode ? 'rgba(201, 168, 76, 0.15)' : 'rgba(139, 105, 20, 0.15)'
+  const footerBg = darkMode ? 'rgba(10, 10, 15, 0.9)' : 'rgba(250, 247, 242, 0.9)'
+
   return (
     <footer style={{
       position: 'relative',
       zIndex: 1,
-      borderTop: '1px solid rgba(201, 168, 76, 0.15)',
-      background: 'rgba(10, 10, 15, 0.9)',
+      borderTop: `1px solid ${borderColor}`,
+      background: footerBg,
       padding: '40px 24px',
     }}>
       <div style={{
@@ -15,13 +26,12 @@ export default function Footer() {
         alignItems: 'center',
         gap: 20,
       }}>
-        {/* Tarot symbol */}
         <svg width="40" height="40" viewBox="0 0 40 40" style={{ opacity: 0.5 }}>
-          <circle cx="20" cy="20" r="18" fill="none" stroke="#c9a84c" strokeWidth="0.5" />
+          <circle cx="20" cy="20" r="18" fill="none" stroke={goldColor} strokeWidth="0.5" />
           <polygon
             points="20,5 23,15 33,15 25,21 28,31 20,25 12,31 15,21 7,15 17,15"
             fill="none"
-            stroke="#c9a84c"
+            stroke={goldColor}
             strokeWidth="0.5"
           />
         </svg>
@@ -30,7 +40,7 @@ export default function Footer() {
           fontFamily: "'Cinzel', serif",
           fontSize: '0.75rem',
           letterSpacing: '0.15em',
-          color: '#c9a84c',
+          color: goldColor,
           textAlign: 'center',
         }}>
           CASSANDRA VEIL
@@ -49,32 +59,34 @@ export default function Footer() {
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 fontSize: '0.85rem',
-                color: '#9b7bc7',
+                color: lavenderColor,
                 textDecoration: 'none',
                 letterSpacing: '0.05em',
                 transition: 'color 0.3s ease',
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = '#c9a84c' }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = '#9b7bc7' }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = goldColor }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = lavenderColor }}
             >
               {platform}
             </a>
           ))}
         </div>
 
-        <p style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: '0.75rem',
-          color: 'rgba(155, 123, 199, 0.5)',
-          fontStyle: 'italic',
-        }}>
-          "The cards never lie — they simply wait for the right question."
-        </p>
+        {tarotMode && (
+          <p style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: '0.75rem',
+            color: lavenderFaded,
+            fontStyle: 'italic',
+          }}>
+            "The cards never lie — they simply wait for the right question."
+          </p>
+        )}
 
         <p style={{
           fontFamily: "'Cormorant Garamond', serif",
           fontSize: '0.7rem',
-          color: 'rgba(245, 230, 211, 0.3)',
+          color: creamVFaded,
         }}>
           &copy; {new Date().getFullYear()} Cassandra Veil. All rights reserved.
         </p>

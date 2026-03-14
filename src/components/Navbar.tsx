@@ -1,27 +1,41 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Sun, Moon, Sparkles, Type } from 'lucide-react'
+import { useTheme } from '../context/ThemeContext'
+import ColorWheelPicker from './ColorWheelPicker'
 
 const navLinks = [
-  { label: 'The Reading', href: '#hero', numeral: '0' },
-  { label: 'The World', href: '#about', numeral: 'XXI' },
-  { label: 'The Spread', href: '#portfolio', numeral: 'VII' },
-  { label: 'The Mirror', href: '#gallery', numeral: 'XVIII' },
-  { label: 'The Record', href: '#resume', numeral: 'X' },
-  { label: 'The Circle', href: '#testimonials', numeral: 'V' },
-  { label: 'The Stage', href: '#upcoming-shows', numeral: 'VIII' },
-  { label: 'The Oracle', href: '#contact', numeral: 'II' },
+  { tarotLabel: 'The Reading', plainLabel: 'Home', href: '#hero', numeral: '0' },
+  { tarotLabel: 'The World', plainLabel: 'About', href: '#about', numeral: 'XXI' },
+  { tarotLabel: 'The Spread', plainLabel: 'Portfolio', href: '#portfolio', numeral: 'VII' },
+  { tarotLabel: 'The Mirror', plainLabel: 'Gallery', href: '#gallery', numeral: 'XVIII' },
+  { tarotLabel: 'The Record', plainLabel: 'Resume', href: '#resume', numeral: 'X' },
+  { tarotLabel: 'The Circle', plainLabel: 'Testimonials', href: '#testimonials', numeral: 'V' },
+  { tarotLabel: 'The Stage', plainLabel: 'Shows', href: '#upcoming-shows', numeral: 'VIII' },
+  { tarotLabel: 'The Oracle', plainLabel: 'Contact', href: '#contact', numeral: 'II' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { tarotMode, toggleTarotMode, darkMode, toggleDarkMode } = useTheme()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  const navBg = darkMode
+    ? (scrolled ? 'rgba(10, 10, 15, 0.95)' : 'transparent')
+    : (scrolled ? 'rgba(250, 247, 242, 0.95)' : 'transparent')
+  const navBorder = scrolled
+    ? `1px solid ${darkMode ? 'rgba(201, 168, 76, 0.15)' : 'rgba(139, 105, 20, 0.15)'}`
+    : '1px solid transparent'
+  const textColor = darkMode ? '#f5e6d3' : '#2a1a3e'
+  const goldColor = darkMode ? '#c9a84c' : '#8b6914'
+  const mobileBg = darkMode ? 'rgba(10, 10, 15, 0.98)' : 'rgba(250, 247, 242, 0.98)'
+  const numeralColor = darkMode ? '#c9a84c' : '#8b6914'
 
   return (
     <>
@@ -36,13 +50,9 @@ export default function Navbar() {
           right: 0,
           zIndex: 1000,
           padding: scrolled ? '12px 24px' : '20px 24px',
-          background: scrolled
-            ? 'rgba(10, 10, 15, 0.95)'
-            : 'transparent',
+          background: navBg,
           backdropFilter: scrolled ? 'blur(20px)' : 'none',
-          borderBottom: scrolled
-            ? '1px solid rgba(201, 168, 76, 0.15)'
-            : '1px solid transparent',
+          borderBottom: navBorder,
           transition: 'all 0.4s ease',
         }}
       >
@@ -62,7 +72,7 @@ export default function Navbar() {
               fontFamily: "'Cinzel', serif",
               fontSize: '1.1rem',
               letterSpacing: '0.15em',
-              color: '#c9a84c',
+              color: goldColor,
               textDecoration: 'none',
               display: 'flex',
               alignItems: 'center',
@@ -70,10 +80,10 @@ export default function Navbar() {
             }}
           >
             <svg width="28" height="28" viewBox="0 0 28 28">
-              <circle cx="14" cy="14" r="12" fill="none" stroke="#c9a84c" strokeWidth="1" />
+              <circle cx="14" cy="14" r="12" fill="none" stroke={goldColor} strokeWidth="1" />
               <polygon
                 points="14,3 16,11 24,11 18,16 20,24 14,19 8,24 10,16 4,11 12,11"
-                fill="#c9a84c"
+                fill={goldColor}
                 opacity="0.7"
               />
             </svg>
@@ -97,39 +107,132 @@ export default function Navbar() {
                   fontFamily: "'Cinzel', serif",
                   fontSize: '0.7rem',
                   letterSpacing: '0.12em',
-                  color: '#f5e6d3',
+                  color: textColor,
                   textDecoration: 'none',
                   textTransform: 'uppercase',
                   transition: 'color 0.3s ease',
                   position: 'relative',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#c9a84c'
+                  e.currentTarget.style.color = goldColor
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#f5e6d3'
+                  e.currentTarget.style.color = textColor
                 }}
               >
-                {link.label}
+                {tarotMode ? link.tarotLabel : link.plainLabel}
               </a>
             ))}
+
+            {/* Toggle buttons */}
+            <div style={{ display: 'flex', gap: 8, marginLeft: 8 }}>
+              {/* Tarot/Plain toggle */}
+              <button
+                onClick={toggleTarotMode}
+                title={tarotMode ? 'Switch to plain language' : 'Switch to tarot language'}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: 34,
+                  height: 34,
+                  borderRadius: '50%',
+                  border: `1px solid ${darkMode ? 'rgba(201, 168, 76, 0.3)' : 'rgba(139, 105, 20, 0.3)'}`,
+                  background: tarotMode
+                    ? (darkMode ? 'rgba(201, 168, 76, 0.15)' : 'rgba(139, 105, 20, 0.15)')
+                    : 'transparent',
+                  color: goldColor,
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                }}
+              >
+                {tarotMode ? <Sparkles size={16} /> : <Type size={16} />}
+              </button>
+
+              {/* Dark/Light toggle */}
+              <button
+                onClick={toggleDarkMode}
+                title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: 34,
+                  height: 34,
+                  borderRadius: '50%',
+                  border: `1px solid ${darkMode ? 'rgba(201, 168, 76, 0.3)' : 'rgba(139, 105, 20, 0.3)'}`,
+                  background: 'transparent',
+                  color: goldColor,
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                }}
+              >
+                {darkMode ? <Sun size={16} /> : <Moon size={16} />}
+              </button>
+
+              {/* Color wheel picker */}
+              <ColorWheelPicker />
+            </div>
           </div>
 
           {/* Mobile Toggle */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="mobile-toggle"
-            style={{
-              display: 'none',
-              background: 'none',
-              border: 'none',
-              color: '#c9a84c',
-              cursor: 'pointer',
-              padding: 4,
-            }}
-          >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="mobile-toggle" style={{ display: 'none', alignItems: 'center', gap: 8 }}>
+            {/* Mobile tarot toggle */}
+            <button
+              onClick={toggleTarotMode}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: 32,
+                height: 32,
+                borderRadius: '50%',
+                border: `1px solid ${darkMode ? 'rgba(201, 168, 76, 0.3)' : 'rgba(139, 105, 20, 0.3)'}`,
+                background: tarotMode
+                  ? (darkMode ? 'rgba(201, 168, 76, 0.15)' : 'rgba(139, 105, 20, 0.15)')
+                  : 'transparent',
+                color: goldColor,
+                cursor: 'pointer',
+              }}
+            >
+              {tarotMode ? <Sparkles size={14} /> : <Type size={14} />}
+            </button>
+
+            {/* Mobile dark/light toggle */}
+            <button
+              onClick={toggleDarkMode}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: 32,
+                height: 32,
+                borderRadius: '50%',
+                border: `1px solid ${darkMode ? 'rgba(201, 168, 76, 0.3)' : 'rgba(139, 105, 20, 0.3)'}`,
+                background: 'transparent',
+                color: goldColor,
+                cursor: 'pointer',
+              }}
+            >
+              {darkMode ? <Sun size={14} /> : <Moon size={14} />}
+            </button>
+
+            {/* Mobile color wheel picker */}
+            <ColorWheelPicker />
+
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: goldColor,
+                cursor: 'pointer',
+                padding: 4,
+              }}
+            >
+              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </motion.nav>
 
@@ -146,7 +249,7 @@ export default function Navbar() {
               left: 0,
               right: 0,
               bottom: 0,
-              background: 'rgba(10, 10, 15, 0.98)',
+              background: mobileBg,
               backdropFilter: 'blur(20px)',
               zIndex: 999,
               display: 'flex',
@@ -168,7 +271,7 @@ export default function Navbar() {
                   fontFamily: "'Cinzel', serif",
                   fontSize: '1rem',
                   letterSpacing: '0.15em',
-                  color: '#f5e6d3',
+                  color: textColor,
                   textDecoration: 'none',
                   textTransform: 'uppercase',
                   display: 'flex',
@@ -176,10 +279,12 @@ export default function Navbar() {
                   gap: 16,
                 }}
               >
-                <span style={{ color: '#c9a84c', fontSize: '0.75rem', fontStyle: 'italic', fontFamily: "'Cormorant Garamond', serif" }}>
-                  {link.numeral}
-                </span>
-                {link.label}
+                {tarotMode && (
+                  <span style={{ color: numeralColor, fontSize: '0.75rem', fontStyle: 'italic', fontFamily: "'Cormorant Garamond', serif" }}>
+                    {link.numeral}
+                  </span>
+                )}
+                {tarotMode ? link.tarotLabel : link.plainLabel}
               </motion.a>
             ))}
           </motion.div>
@@ -189,7 +294,7 @@ export default function Navbar() {
       <style>{`
         @media (max-width: 900px) {
           .desktop-nav { display: none !important; }
-          .mobile-toggle { display: block !important; }
+          .mobile-toggle { display: flex !important; }
         }
       `}</style>
     </>

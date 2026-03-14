@@ -1,8 +1,19 @@
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { actorInfo } from '../data/tarotData'
+import { useTheme } from '../context/ThemeContext'
 
 export default function Hero() {
+  const { tarotMode, darkMode } = useTheme()
+
+  const goldColor = darkMode ? '#c9a84c' : '#8b6914'
+  const lavenderColor = darkMode ? '#9b7bc7' : '#7b5baa'
+  const creamFaded = darkMode ? 'rgba(245, 230, 211, 0.5)' : 'rgba(42, 26, 62, 0.5)'
+  const goldFaded = darkMode ? 'rgba(201, 168, 76, 0.4)' : 'rgba(139, 105, 20, 0.4)'
+  const orbBg = darkMode
+    ? 'radial-gradient(circle, rgba(107, 63, 160, 0.15) 0%, transparent 70%)'
+    : 'radial-gradient(circle, rgba(139, 105, 20, 0.08) 0%, transparent 70%)'
+
   return (
     <section
       id="hero"
@@ -28,77 +39,60 @@ export default function Hero() {
         width: 800,
         height: 800,
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(107, 63, 160, 0.15) 0%, transparent 70%)',
+        background: orbBg,
         pointerEvents: 'none',
       }} />
 
       {/* Central Tarot Card Illustration */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8, rotateY: -30 }}
-        animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-        transition={{ duration: 1.5, ease: 'easeOut' }}
-        style={{ marginBottom: 40 }}
-      >
-        <svg width="200" height="320" viewBox="0 0 200 320" style={{ filter: 'drop-shadow(0 0 40px rgba(201, 168, 76, 0.2))' }}>
-          {/* Card outline */}
-          <rect x="10" y="10" width="180" height="300" rx="12" fill="none" stroke="#c9a84c" strokeWidth="1.5" />
-          <rect x="18" y="18" width="164" height="284" rx="8" fill="none" stroke="rgba(201, 168, 76, 0.3)" strokeWidth="0.5" />
-
-          {/* Corner ornaments */}
-          {[[25, 25], [175, 25], [25, 295], [175, 295]].map(([x, y], i) => (
-            <g key={i}>
-              <circle cx={x} cy={y} r="6" fill="none" stroke="#c9a84c" strokeWidth="0.5" />
-              <circle cx={x} cy={y} r="2" fill="#c9a84c" opacity="0.5" />
+      {tarotMode && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, rotateY: -30 }}
+          animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+          transition={{ duration: 1.5, ease: 'easeOut' }}
+          style={{ marginBottom: 40 }}
+        >
+          <svg width="200" height="320" viewBox="0 0 200 320" style={{ filter: `drop-shadow(0 0 40px ${darkMode ? 'rgba(201, 168, 76, 0.2)' : 'rgba(139, 105, 20, 0.15)'})` }}>
+            <rect x="10" y="10" width="180" height="300" rx="12" fill="none" stroke={goldColor} strokeWidth="1.5" />
+            <rect x="18" y="18" width="164" height="284" rx="8" fill="none" stroke={`${goldColor}4d`} strokeWidth="0.5" />
+            {[[25, 25], [175, 25], [25, 295], [175, 295]].map(([x, y], i) => (
+              <g key={i}>
+                <circle cx={x} cy={y} r="6" fill="none" stroke={goldColor} strokeWidth="0.5" />
+                <circle cx={x} cy={y} r="2" fill={goldColor} opacity="0.5" />
+              </g>
+            ))}
+            <text x="100" y="50" textAnchor="middle" fontFamily="Cinzel" fontSize="12" fill={goldColor} letterSpacing="3">XVII</text>
+            <g transform="translate(100, 150)">
+              <circle r="60" fill="none" stroke={goldColor} strokeWidth="0.5" />
+              <circle r="50" fill="none" stroke={`${lavenderColor}66`} strokeWidth="0.3" strokeDasharray="3,3" />
+              <circle r="40" fill="none" stroke={goldColor} strokeWidth="0.3" />
+              <polygon
+                points="0,-45 12,-15 45,-15 18,5 27,40 0,20 -27,40 -18,5 -45,-15 -12,-15"
+                fill={`${goldColor}26`}
+                stroke={goldColor}
+                strokeWidth="1"
+              />
+              <polygon
+                points="0,-20 6,-7 20,-7 9,2 12,18 0,10 -12,18 -9,2 -20,-7 -6,-7"
+                fill={goldColor}
+                opacity="0.4"
+              />
+              <circle r="4" fill={goldColor} opacity="0.8" />
+              {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => {
+                const rad = (angle * Math.PI) / 180
+                const x = Math.cos(rad) * 55
+                const y = Math.sin(rad) * 55
+                return (
+                  <circle key={angle} cx={x} cy={y} r="1.5" fill={goldColor} opacity="0.5" />
+                )
+              })}
             </g>
-          ))}
-
-          {/* Card number */}
-          <text x="100" y="50" textAnchor="middle" fontFamily="Cinzel" fontSize="12" fill="#c9a84c" letterSpacing="3">XVII</text>
-
-          {/* Central star design */}
-          <g transform="translate(100, 150)">
-            <circle r="60" fill="none" stroke="#c9a84c" strokeWidth="0.5" />
-            <circle r="50" fill="none" stroke="rgba(155, 123, 199, 0.4)" strokeWidth="0.3" strokeDasharray="3,3" />
-            <circle r="40" fill="none" stroke="#c9a84c" strokeWidth="0.3" />
-
-            {/* Main star */}
-            <polygon
-              points="0,-45 12,-15 45,-15 18,5 27,40 0,20 -27,40 -18,5 -45,-15 -12,-15"
-              fill="rgba(201, 168, 76, 0.15)"
-              stroke="#c9a84c"
-              strokeWidth="1"
-            />
-
-            {/* Inner star */}
-            <polygon
-              points="0,-20 6,-7 20,-7 9,2 12,18 0,10 -12,18 -9,2 -20,-7 -6,-7"
-              fill="#c9a84c"
-              opacity="0.4"
-            />
-
-            {/* Center point */}
-            <circle r="4" fill="#c9a84c" opacity="0.8" />
-
-            {/* Surrounding small stars */}
-            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => {
-              const rad = (angle * Math.PI) / 180
-              const x = Math.cos(rad) * 55
-              const y = Math.sin(rad) * 55
-              return (
-                <circle key={angle} cx={x} cy={y} r="1.5" fill="#c9a84c" opacity="0.5" />
-              )
-            })}
-          </g>
-
-          {/* Flowing lines (water/energy) */}
-          <path d="M40,220 Q70,210 100,220 Q130,230 160,220" fill="none" stroke="rgba(155, 123, 199, 0.3)" strokeWidth="0.8" />
-          <path d="M40,230 Q70,220 100,230 Q130,240 160,230" fill="none" stroke="rgba(155, 123, 199, 0.2)" strokeWidth="0.5" />
-
-          {/* Card name */}
-          <text x="100" y="270" textAnchor="middle" fontFamily="Cinzel" fontSize="13" fill="#c9a84c" letterSpacing="4">THE STAR</text>
-          <text x="100" y="290" textAnchor="middle" fontFamily="Cormorant Garamond" fontSize="9" fill="rgba(155, 123, 199, 0.6)" fontStyle="italic" letterSpacing="2">Major Arcana</text>
-        </svg>
-      </motion.div>
+            <path d="M40,220 Q70,210 100,220 Q130,230 160,220" fill="none" stroke={`${lavenderColor}4d`} strokeWidth="0.8" />
+            <path d="M40,230 Q70,220 100,230 Q130,240 160,230" fill="none" stroke={`${lavenderColor}33`} strokeWidth="0.5" />
+            <text x="100" y="270" textAnchor="middle" fontFamily="Cinzel" fontSize="13" fill={goldColor} letterSpacing="4">THE STAR</text>
+            <text x="100" y="290" textAnchor="middle" fontFamily="Cormorant Garamond" fontSize="9" fill={`${lavenderColor}99`} fontStyle="italic" letterSpacing="2">Major Arcana</text>
+          </svg>
+        </motion.div>
+      )}
 
       {/* Name */}
       <motion.h1
@@ -125,7 +119,7 @@ export default function Hero() {
         style={{
           width: 200,
           height: 1,
-          background: 'linear-gradient(90deg, transparent, #c9a84c, transparent)',
+          background: `linear-gradient(90deg, transparent, ${goldColor}, transparent)`,
           margin: '0 auto 20px',
         }}
       />
@@ -139,12 +133,14 @@ export default function Hero() {
           fontFamily: "'Cormorant Garamond', serif",
           fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
           fontStyle: 'italic',
-          color: '#9b7bc7',
+          color: lavenderColor,
           letterSpacing: '0.05em',
           maxWidth: 600,
         }}
       >
-        {actorInfo.tagline}
+        {tarotMode
+          ? actorInfo.tagline
+          : 'Award-winning actor. Powerful, transformative performances.'}
       </motion.p>
 
       {/* Stats */}
@@ -165,7 +161,7 @@ export default function Hero() {
             <p style={{
               fontFamily: "'Cinzel', serif",
               fontSize: '1.8rem',
-              color: '#c9a84c',
+              color: goldColor,
               fontWeight: 700,
             }}>
               {value}
@@ -173,7 +169,7 @@ export default function Hero() {
             <p style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: '0.8rem',
-              color: 'rgba(245, 230, 211, 0.5)',
+              color: creamFaded,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
             }}>
@@ -203,13 +199,13 @@ export default function Hero() {
         <span style={{
           fontFamily: "'Cormorant Garamond', serif",
           fontSize: '0.7rem',
-          color: 'rgba(201, 168, 76, 0.4)',
+          color: goldFaded,
           letterSpacing: '0.15em',
           textTransform: 'uppercase',
         }}>
-          Draw a Card
+          {tarotMode ? 'Draw a Card' : 'Scroll Down'}
         </span>
-        <ChevronDown size={20} color="rgba(201, 168, 76, 0.4)" />
+        <ChevronDown size={20} color={goldFaded} />
       </motion.div>
     </section>
   )

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
+import { ThemeProvider } from './context/ThemeContext'
 import Navbar from './components/Navbar'
 import StarField from './components/StarField'
 import Hero from './pages/Hero'
@@ -22,7 +23,7 @@ function App() {
   }, [])
 
   return (
-    <>
+    <ThemeProvider>
       <AnimatePresence mode="wait">
         {loading && <LoadingScreen key="loader" />}
       </AnimatePresence>
@@ -44,7 +45,7 @@ function App() {
           <Footer />
         </>
       )}
-    </>
+    </ThemeProvider>
   )
 }
 

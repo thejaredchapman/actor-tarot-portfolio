@@ -1,8 +1,13 @@
+import { useTheme } from '../context/ThemeContext'
+
 interface SectionDividerProps {
   symbol?: string
 }
 
 export default function SectionDivider({ symbol = '\u2726' }: SectionDividerProps) {
+  const { darkMode } = useTheme()
+  const goldColor = darkMode ? '#c9a84c' : '#8b6914'
+
   return (
     <div style={{
       display: 'flex',
@@ -15,10 +20,10 @@ export default function SectionDivider({ symbol = '\u2726' }: SectionDividerProp
         height: 1,
         flex: 1,
         maxWidth: 200,
-        background: 'linear-gradient(90deg, transparent, #c9a84c 50%, transparent)',
+        background: `linear-gradient(90deg, transparent, ${goldColor} 50%, transparent)`,
       }} />
       <span style={{
-        color: '#c9a84c',
+        color: goldColor,
         fontSize: '1.2rem',
         lineHeight: 1,
       }}>
@@ -28,7 +33,7 @@ export default function SectionDivider({ symbol = '\u2726' }: SectionDividerProp
         height: 1,
         flex: 1,
         maxWidth: 200,
-        background: 'linear-gradient(90deg, transparent, #c9a84c 50%, transparent)',
+        background: `linear-gradient(90deg, transparent, ${goldColor} 50%, transparent)`,
       }} />
     </div>
   )

@@ -51,6 +51,84 @@
   --transition-mystical: 1.2s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
+/* Light Mode */
+[data-theme="light"] {
+  --color-void: #faf7f2;
+  --color-abyss: #f0ebe3;
+  --color-deep-purple: #e8e0f0;
+  --color-midnight: #ede5f5;
+  --color-velvet: #d8cceb;
+  --color-amethyst: #8b6bb5;
+  --color-mystic-purple: #6b3fa0;
+  --color-lavender: #7b5baa;
+  --color-gold: #8b6914;
+  --color-gold-light: #6b5010;
+  --color-gold-dark: #c9a84c;
+  --color-gold-glow: #b8941a;
+  --color-cream: #2a1a3e;
+  --color-pearl: #1a1028;
+  --color-silver: #555;
+  --color-starlight: #3a2a5a;
+  --color-blood: #8b0000;
+  --color-ember: #c44536;
+  --color-teal: #2a7c6f;
+  --color-teal-dark: #1a4f47;
+}
+
+[data-theme="light"] body {
+  background-color: #faf7f2;
+  color: #2a1a3e;
+}
+
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6 {
+  color: #6b5010;
+}
+
+[data-theme="light"] p {
+  color: #2a1a3e;
+}
+
+[data-theme="light"] ::selection {
+  background: #c9a84c;
+  color: #fff;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: #f0ebe3;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #8b6bb5;
+}
+
+[data-theme="light"] .shimmer-text {
+  background: linear-gradient(
+    120deg,
+    #8b6914 0%,
+    #6b5010 25%,
+    #4a3808 50%,
+    #6b5010 75%,
+    #8b6914 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+[data-theme="light"] .glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(139, 105, 20, 0.15);
+}
+
 /* Reset & Base */
 *,
 *::before,

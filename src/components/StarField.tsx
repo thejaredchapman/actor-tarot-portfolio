@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react'
+import { useTheme } from '../context/ThemeContext'
 
 export default function StarField() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const { darkMode } = useTheme()
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -14,7 +16,7 @@ export default function StarField() {
 
     const resize = () => {
       canvas.width = window.innerWidth
-      canvas.height = window.innerHeight * 5 // Tall enough for full page scroll
+      canvas.height = window.innerHeight * 5
     }
 
     resize()
@@ -43,6 +45,11 @@ export default function StarField() {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
+      if (!darkMode) {
+        animationId = requestAnimationFrame(animate)
+        return
+      }
+
       stars.forEach((star) => {
         star.phase += star.twinkleSpeed
         const flicker = Math.sin(star.phase) * 0.5 + 0.5
@@ -53,7 +60,6 @@ export default function StarField() {
         ctx.fillStyle = `rgba(232, 212, 139, ${alpha})`
         ctx.fill()
 
-        // Glow effect for larger stars
         if (star.size > 1.2) {
           ctx.beginPath()
           ctx.arc(star.x, star.y, star.size * 3, 0, Math.PI * 2)
@@ -71,7 +77,7 @@ export default function StarField() {
       window.removeEventListener('resize', resize)
       cancelAnimationFrame(animationId)
     }
-  }, [])
+  }, [darkMode])
 
   return (
     <canvas
